@@ -181,7 +181,7 @@
             if (recipient === null) { console.log('✅'); }
             else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. The page can be visited at <a href='https://duguaynins.github.io/uris/?who=' translate="no">https://uris.work</a> 🌐.`; }
             
-            if (!recipient) { document.getElementById('message').innerHTML = '⚠️ This is not mailto/tel/sms.'; }
+            if (!redirect) { document.getElementById('message').innerHTML = '⚠️ This is not mailto/tel/sms.'; }
         } else {
             // Missing required recipient parameter
             if (recipient === null) { console.log('✅'); }
