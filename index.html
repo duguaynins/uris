@@ -54,8 +54,8 @@
 </head>
 <body>
 
-    <!--h1 translate="no">© 2024 NINS (by JPGT). 👻</h1-->
-    <h1 translate="no">© 2024 NINS <span style="color: red;">(by JPGT)</span>. 👻✨</h1>
+    <h1 translate="no">© 2024 NINS. 👻</h1>
+    <!--h1 translate="no">© 2024 NINS <span translate="no" style="color: red;">(by JPGT)</span>. 👻✨</h1-->
 
     <!--h1>Preparing your information...</h1-->
     <p id="system">📌 If you really need a shorter information redirect link, We welcome you to contact us (<a style='color:red;' href='mailto:duguaynins@gmail.com'>duguaynins@gmail.com</a>).</p>
@@ -66,6 +66,7 @@
     <!--p id="message">💬 ...!</p-->
     <br>
     <p id="message" style="color: #999999;">💬 ...!</p>
+    <h1 translate="no" style="color: red;">(by JPGT)</h1>
     
     <!-- 翻譯小工具容器（放在頁面任意地方） -->
     <div id="google_translate_wrapper">
@@ -105,6 +106,22 @@
 
         // 2. Read the 'redirect' parameter as recipient ID
         const recipient = urlParams.get('who');
+        if (recipient === null) { console.log('✅'); }
+        if (recipient) {
+            if (recipient.startsWith('mailto:')) {
+                console.log('✅ mailto');
+            } else if (recipient.startsWith('tel:')) {
+                console.log('✅ tel');
+            } else if (recipient.startsWith('sms:')) {
+                console.log('✅ sms');
+            } else if (recipient === '') {
+                console.log('✅');
+            } else {
+                console.log('🟥 mailto 🟥 tel 🟥 sms');
+                ///return;
+                const redirect = false;
+            }
+        }
         ///const recipient = urlParams.get('redirect');
         ///const recipient = urlParams.get('to');
         /*
@@ -140,7 +157,9 @@
 
             // 4. Redirect to uris link
             // This triggers the uris protocol
-            window.location.href = urisUrl;
+            if (redirect) {
+                window.location.href = urisUrl;
+            }
             /*
             try {
                 window.open(urisUrl);
@@ -184,6 +203,7 @@
         navigator.clipboard.writeText(url).then(() => {
             copyButton.textContent = "✅ Copied 🔗";
             setTimeout(() => (copyButton.textContent = "Copy URL 🔗"), 2000);
+            document.getElementById("informationInput").value = "";
         });
         }
 
