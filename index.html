@@ -146,7 +146,7 @@
         const subject = urlParams.get('subject');
         const body = urlParams.get('body');
         ///document.getElementById("nanoURL").innerHTML = "💡 （example →）<a style='text-decoration:none; color:black;' href='https://nins.uris.world' target='_blank' rel='noopener noreferrer'>https://<u style='color:red;'>nins</u>.uris.world</a>";
-        document.getElementById("miniURL").innerHTML = "💡 （example →）<u style='text-decoration:none; color:black;'>https://duguaynins.github.io/uris/?who=<input style='color:red;' type='tel' id='informationInput' placeholder='' value='' size='25'> <button id='copyButton'>Copy URL 🔗</button></u>";  ///uris/index.html
+        document.getElementById("miniURL").innerHTML = "💡 （example →）<u style='text-decoration:none; color:black;'>https://duguaynins.github.io/uris/?who=<input style='color:red;' type='tel' id='informationInput' placeholder='' value='' size='40'> <button id='copyButton'>Copy URL 🔗</button></u>";  ///uris/index.html
         document.getElementById("hintURL").innerHTML = '✨ Simply enter your information after "who=" to get your "free HTTPS URL" for your information.';
         
         if (recipient) {
@@ -253,8 +253,14 @@
         // 提示文字清單
         const placeholders = [
             "mailto:duguaynins@gmail.com",
-            "tel:+886-90909-5800",
-            "sms:+886-90909-5800",
+            "mailto:duguaynins@gmail.com?subject=uris!",
+            ///"mailto:duguaynins@gmail.com?subject=uris!&body=like!",
+            ///"mailto:main@gmail.com?subject=uris!&body=like!&bcc=a@gmail.com,b@gmail.com",
+            ///"mailto:main@gmail.com?subject=uris!&body=like!&cc=y@gmail.com,z@gmail.com",
+            "tel:+886-909095800",
+            "tel:+886-123456789,0000",
+            "sms:+886-909095800",
+            "sms:+886-909095800?body=uris!like!",
         ];
 
         let index = 0;
