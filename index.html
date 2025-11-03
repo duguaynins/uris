@@ -58,7 +58,7 @@
     <!--h1 translate="no">© 2024 NINS <span translate="no" style="color: red;">(by JPGT)</span>. 👻✨</h1-->
 
     <!--h1>Preparing your information...</h1-->
-    <p id="system">📌 If you really need a shorter information redirect link, We welcome you to contact us (<a style='color:red;' href='mailto:duguaynins@gmail.com'>duguaynins@gmail.com</a>).</p>
+    <p id="system">📌 If you really need a shorter information redirect link, We welcome you to contact us (<a style='color:red;' href='mailto:duguaynins@gmail.com'>duguaynins@gmail.com</a> 📧).</p>
     <br>
     <!--p id="nanoURL" translate="no">💡 ...!</p-->
     <p id="hintURL">✨ ...!</p>
@@ -181,7 +181,7 @@
             ///document.getElementById('message').innerText = `The information will be sent to: ${recipient}. Please make sure your information client is open.`;
             ///document.getElementById('message').innerHTML = `📧 The recipient information will be pre-filled. If it fails, the redirect will not occur. In that case, please use this information to contact (${recipient}).`;
             if (recipient === null) { console.log('✅'); }
-            else { document.getElementById('message').innerHTML = `🌐 Fallback redirect is active and the page is locked. The page can be visited at <a href='https://duguaynins.github.io/uris/?who=' translate="no">https://uris.world</a>.`; }
+            else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. The page can be visited at <a href='https://duguaynins.github.io/uris/?who=' translate="no">https://uris.world</a> 🌐.`; }
         } else {
             // Missing required recipient parameter
             if (recipient === null) { console.log('✅'); }
@@ -208,7 +208,7 @@
         }
 
         const url = `https://duguaynins.github.io/uris/?who=${encodeURIComponent(information)}`;
-        document.getElementById('message').innerHTML = `✅ <a href='${url}'>${url}</a>`;
+        document.getElementById('message').innerHTML = `✅ <a href='${url}'>${url}</a> 🌐`;
         ///result.textContent = url;
 
         navigator.clipboard.writeText(url).then(() => {
