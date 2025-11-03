@@ -60,11 +60,13 @@
 
     <!--h1>Preparing your information...</h1-->
     <p id="system">📌 If you really need a shorter information redirect link, We welcome you to contact us. <a translate="no">(mailto:<a style='color:red;' href='mailto:duguaynins@gmail.com'>duguaynins@gmail.com</a> 📧)</a></p>
+    
+    <p id="message" style="color: #999999;">💬 ...!</p>
     <!--p id="nanoURL" translate="no">💡 ...!</p-->
-    <p id="hintURL">✨ ...!</p>
+    <!--p id="hintURL">✨ ...!</p-->
     <p id="miniURL" translate="no">💡 ...!</p>
     <!--p id="message">💬 ...!</p-->
-    <p id="message" style="color: #999999;">💬 ...!</p>
+    
     <h1 translate="no" style="color: red;">(by JPGT)</h1>
     
     <!-- 翻譯小工具容器（放在頁面任意地方） -->
@@ -148,7 +150,7 @@
         const body = urlParams.get('body');
         ///document.getElementById("nanoURL").innerHTML = "💡 （example →）<a style='text-decoration:none; color:black;' href='https://nins.uris.world' target='_blank' rel='noopener noreferrer'>https://<u style='color:red;'>nins</u>.uris.world</a>";
         document.getElementById("miniURL").innerHTML = "💡 <u style='text-decoration:none; color:black;'>https://duguaynins.github.io/uris/?who=<input style='color:red;' type='text' id='informationInput' placeholder='' value='' size='35'> <button id='copyButton'>Copy URL 🔗</button></u>";  ///uris/index.html
-        document.getElementById("hintURL").innerHTML = '✨ Simply enter your information after "who=" to get your "free HTTPS URL" for your information.';
+        document.getElementById("message").innerHTML = '✨ Simply enter your information after "who=" to get your "free HTTPS URL" for your information.';
         
         if (recipient) {
             // 3. Build the uris link
