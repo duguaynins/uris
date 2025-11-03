@@ -122,6 +122,7 @@
                 console.log('✅');
                 redirect = null;
             } else {
+                document.getElementById('message').innerHTML = '⚠️ This is not mailto/tel/sms.';
                 console.log('🟥 mailto 🟥 tel 🟥 sms');
                 ///return;
                 ///const redirect = false;
@@ -142,6 +143,7 @@
         ///document.getElementById("nanoURL").innerHTML = "💡 （example →）<a style='text-decoration:none; color:black;' href='https://nins.uris.world' target='_blank' rel='noopener noreferrer'>https://<u style='color:red;'>nins</u>.uris.world</a>";
         document.getElementById("miniURL").innerHTML = "💡 （example →）<u style='text-decoration:none; color:black;'>https://duguaynins.github.io/uris/?who=<input style='color:red;' type='tel' id='informationInput' placeholder='' value='' size='25'> <button id='copyButton'>Copy URL 🔗</button></u>";  ///uris/index.html
         document.getElementById("hintURL").innerHTML = '✨ Simply enter your information after "who=" to get your "free HTTPS URL" for your information.';
+        
         if (recipient) {
             // 3. Build the uris link
             let urisUrl = `${recipient}`;
@@ -178,10 +180,13 @@
             // Show message to user
             ///document.getElementById('message').innerText = `The information will be sent to: ${recipient}. Please make sure your information client is open.`;
             ///document.getElementById('message').innerHTML = `📧 The recipient information will be pre-filled. If it fails, the redirect will not occur. In that case, please use this information to contact (${recipient}).`;
-            document.getElementById('message').innerHTML = `🌐 Fallback redirect is active and the page is locked. The page can be visited at <a href='https://uris.world' translate="no">https://uris.world</a>.`;
+            if (recipient === null) { console.log('✅'); }
+            else { document.getElementById('message').innerHTML = `🌐 Fallback redirect is active and the page is locked. The page can be visited at <a href='https://duguaynins.github.io/uris/?who=' translate="no">https://uris.world</a>.`; }
         } else {
             // Missing required recipient parameter
-            document.getElementById('message').innerHTML = '⚠️ Missing recipient information in the URL parameter (?who=...).';
+            if (recipient === null) { console.log('✅'); }
+            else { document.getElementById('message').innerHTML = '⚠️ Missing recipient information in the URL parameter (?who=...).'; }
+            
         }
     </script>
     <!-- ================================================== -->
