@@ -58,7 +58,7 @@
     <!--h1 translate="no">© 2024 NINS <span translate="no" style="color: red;">(by JPGT)</span>. 👻✨</h1-->
 
     <!--h1>Preparing your information...</h1-->
-    <p id="system">📌 If you really need a shorter information redirect link, We welcome you to contact us (<a style='color:red;' href='mailto:duguaynins@gmail.com'>duguaynins@gmail.com</a> 📧).</p>
+    <p id="system">📌 If you really need a shorter information redirect link, We welcome you to contact us. <a translate="no">(mailto:<a style='color:red;' href='mailto:duguaynins@gmail.com'>duguaynins@gmail.com</a> 📧)</a></p>
     <!--p id="nanoURL" translate="no">💡 ...!</p-->
     <p id="hintURL">✨ ...!</p>
     <p id="miniURL" translate="no">💡 ...!</p>
@@ -73,12 +73,39 @@
     <!-- ================================================== -->
     
     
+    <script>
+        function checkUriData(uriData) {
+            let redirect = null;
+
+            if (uriData === null) {
+                console.log('✅');
+                redirect = null;
+            } else if (uriData === '') {
+                console.log('✅');
+                redirect = null;
+            } else if (uriData.startsWith('mailto:')) {
+                console.log('✅ mailto');
+                redirect = true;
+            } else if (uriData.startsWith('tel:')) {
+                console.log('✅ tel');
+                redirect = true;
+            } else if (uriData.startsWith('sms:')) {
+                console.log('✅ sms');
+                redirect = true;
+            } else {
+                console.log('🟥 mailto 🟥 tel 🟥 sms');
+                redirect = false;
+            }
+
+            return redirect;
+        }
+    </script>
+    <!-- ================================================== -->
+
     <!--script>
     const tips = ["姓名", "Email", "電話", "留言"], i = document.querySelector('#myInput');
     setInterval((n => i.placeholder = "請輸入" + tips[n % tips.length]), 1000, 0);
     </script-->
-
-    <!--input type="text" id="myInput" placeholder="輸入內容..." /-->
     <!-- ================================================== -->
 
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -105,28 +132,6 @@
 
         // 2. Read the 'redirect' parameter as recipient ID
         const recipient = urlParams.get('who');
-        if (recipient === null) { console.log('✅'); }
-        if (recipient) {
-            if (recipient.startsWith('mailto:')) {
-                console.log('✅ mailto');
-                redirect = true;
-            } else if (recipient.startsWith('tel:')) {
-                console.log('✅ tel');
-                redirect = true;
-            } else if (recipient.startsWith('sms:')) {
-                console.log('✅ sms');
-                redirect = true;
-            } else if (recipient === '') {
-                console.log('✅');
-                redirect = null;
-            } else {
-                ///document.getElementById('message').innerHTML = '⚠️ This is not mailto/tel/sms.';
-                console.log('🟥 mailto 🟥 tel 🟥 sms');
-                ///return;
-                ///const redirect = false;
-                redirect = false;
-            }
-        }
         ///const recipient = urlParams.get('redirect');
         ///const recipient = urlParams.get('to');
         /*
@@ -135,6 +140,8 @@
                        || urlParams.get('go')
                        || urlParams.get('to');*/
         
+        redirect = checkUriData(recipient);
+
         // Read 'subject' and 'body' parameters
         const subject = urlParams.get('subject');
         const body = urlParams.get('body');
@@ -199,23 +206,32 @@
         ///const result = document.getElementById("result");
 
         function updateAndCopy() {
-        const information = document.getElementById("informationInput").value.trim();
-        ///if (!information) return;
-        if (!information) {
-            copyButton.textContent = "⬅️ Missing 🔗";
-            setTimeout(() => (copyButton.textContent = "Copy URL 🔗"), 2000);
-            return;
-        }
+            const information = document.getElementById("informationInput").value.trim();
+            ///if (!information) return;
+            if (!information) {
+                copyButton.textContent = "⬅️ Missing 🔗";
+                setTimeout(() => (copyButton.textContent = "Copy URL 🔗"), 2000);
+                return;
+            }
 
-        const url = `https://duguaynins.github.io/uris/?who=${encodeURIComponent(information)}`;
-        document.getElementById('message').innerHTML = `✅ <a href='${url}'>${url}</a> 🌐`;
-        ///result.textContent = url;
+            let redirect = checkUriData(information);
+            ///if (!redirect) { document.getElementById('message').innerHTML = '⚠️ This is not a valid protocol <a translate="yes">(mailto:/tel:/sms:)<a>.'; }
+            if (!redirect) { document.getElementById('message').innerHTML = '⚠️ You need to use a valid protocol. <a translate="no">(mailto:/tel:/sms:)<a>'; }
+            if (!redirect) {
+                copyButton.textContent = "⬅️ ERROR 🔗";
+                setTimeout(() => (copyButton.textContent = "Copy URL 🔗"), 2000);
+                return;
+            }
 
-        navigator.clipboard.writeText(url).then(() => {
-            copyButton.textContent = "✅ Copied 🔗";
-            setTimeout(() => (copyButton.textContent = "Copy URL 🔗"), 2000);
-            document.getElementById("informationInput").value = "";
-        });
+            const url = `https://duguaynins.github.io/uris/?who=${encodeURIComponent(information)}`;
+            document.getElementById('message').innerHTML = `✅ <a href='${url}'>${url}</a> 🌐`;
+            ///result.textContent = url;
+
+            navigator.clipboard.writeText(url).then(() => {
+                copyButton.textContent = "✅ Copied 🔗";
+                setTimeout(() => (copyButton.textContent = "Copy URL 🔗"), 2000);
+                document.getElementById("informationInput").value = "";
+            });
         }
 
         // 按下 Enter 觸發複製
