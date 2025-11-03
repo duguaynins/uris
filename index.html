@@ -60,7 +60,7 @@
     <!--h1 translate="no">© 2024 NINS <span translate="no" style="color: red;">(by JPGT)</span>. 👻✨</h1-->
 
     <!--h1>Preparing your information...</h1-->
-    <p id="message">📌 If you really need a shorter information redirect link, We welcome you to contact us. <a translate="no">(mailto:<a style='color:red;' href='mailto:duguaynins@gmail.com'>duguaynins@gmail.com</a> 📧)</a></p>
+    <p id="message">📌 If you really need a shorter information redirect link, We welcome you to contact us. <span translate="no">(mailto:<a style='color:red;' href='mailto:duguaynins@gmail.com'>duguaynins@gmail.com</a> 📧)</span></p>
     
     <!--p id="message" style="color: #999999;">💬 ...!</p-->
     <!--p id="nanoURL" translate="no">💡 ...!</p-->
@@ -187,7 +187,7 @@
             ///document.getElementById('message').innerText = `The information will be sent to: ${recipient}. Please make sure your information client is open.`;
             ///document.getElementById('message').innerHTML = `📧 The recipient information will be pre-filled. If it fails, the redirect will not occur. In that case, please use this information to contact (${recipient}).`;
             if (recipient === null) { console.log('✅'); }
-            else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. To create a redirect, please visit the original URL. <a translate="no">(<a href='https://duguaynins.github.io/uris/?who=' translate="no">https://uris.nins.cc</a> 🌐)</a>`; }
+            else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. To create a redirect, please visit the original URL. <span translate="no">(<a href='https://duguaynins.github.io/uris/?who='>https://uris.nins.cc</a> 🌐)</span>`; }
             
             if (!redirect) { document.getElementById('message').innerHTML = '⚠️ This is not mailto/tel/sms.'; }
         } else {
