@@ -9,6 +9,11 @@
     <!--link rel="shortcut icon" href="/favicon.ico"-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <title translate="no">nins/uris</title>
+    <style>
+      body {
+        overflow: hidden;
+      }
+    </style>
   
     <!-- 可選：簡單 CSS 調整翻譯小工具外觀（可自訂） -->
     <style>
@@ -312,6 +317,16 @@
     <!-- ================================================== -->
 
     <script>
+        function isEncoded(str) {
+            try {
+                // 嘗試解碼，如果解碼後與原始不同，表示曾經編碼
+                const decoded = decodeURIComponent(str);
+                return decoded !== str;
+            } catch (e) {
+                // 如果解碼失敗，表示包含不合法的 %XX，可能是亂碼
+                return false;
+            }
+        }
         function parseScheme(input) {
             // 使用正則取出協議與內容
             const match = input.match(/^([a-zA-Z]+):(.*)$/);
@@ -408,12 +423,18 @@
         if (urisMain) {
             // 3. Build the uris link
 
-            ///const [scheme, recipient] = parseScheme(urisMain);
-            const { scheme, recipient } = parseScheme(urisMain); // ✅
+            let urisUrl = `${urisMain}`;
+            ///const [scheme, recipient] = parseScheme(urisMain); // 陣列用
+            ///const { scheme, recipient } = parseScheme(urisMain); // 字典用 ✅
 
             ///let urisUrl = `${recipient}`;
-            let urisUrl = `${scheme}${encodeURIComponent(recipient)}`;
-
+            ///let urisUrl = `${scheme}${encodeURIComponent(recipient)}`;
+            /*
+            let urisUrl = "";
+            if (isEncoded(recipient)) { urisUrl = `${recipient}` } // ✅
+            else { urisUrl = `${scheme}${encodeURIComponent(recipient)}`; } */
+            document.getElementById("informationInput").value = decodeURIComponent(urisMain);
+            document.getElementById("informationInput").disabled = true;
             // Check if subject or body exist, then add them
             const params = [];
             if (subject) {
@@ -490,7 +511,13 @@
             ///const url = `https://duguaynins.github.io/uris/?who=${encodeURIComponent(information)}`;
             ///const url = `${url_op}?who=${encodeURIComponent(information)}`;
             ///const url = `https://uris.nins.cc?who=${encodeURIComponent(information)}`;
-            const url = `https://uris.nins.cc?who=${(information)}`;
+            ///const url = `https://uris.nins.cc?who=${(information)}`;
+            /*
+            const url = "";
+            if (isEncoded(recipient)) { url = `https://uris.nins.cc?who=${(information)}` } // ✅
+            else { url = `https://uris.nins.cc?who=${encodeURIComponent(information)}`; } */
+            const url = `https://uris.nins.cc?who=${encodeURIComponent(information)}`;
+
             document.getElementById('message').innerHTML = `✅ <a href='${url}'>${url}</a> 🌐`;
             ///result.textContent = url;
 
