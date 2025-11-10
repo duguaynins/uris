@@ -575,6 +575,10 @@
         ///const result = document.getElementById("result");
 
         function onlyCopy() {
+            const information = document.getElementById("InputInfo").value.trim();
+            ///if (!information) return;
+            const url = `https://uris.nins.cc?who=${encodeURIComponent(information)}`;
+            
             navigator.clipboard.writeText(url).then(() => {
                 copyButton.textContent = "✅";  // Copied 🔗  // 🎁
                 setTimeout(() => (copyButton.textContent = "🔗"), 2000);  // Copy URL 
@@ -624,7 +628,8 @@
             }); */
 
             if (true) {
-              document.getElementById('message').innerHTML = '✅ Meets the standard protocol.';
+                copyButton.textContent = "🎁";
+                document.getElementById('message').innerHTML = '✅ Meets the standard protocol.';
             }
         }
 
