@@ -576,13 +576,19 @@
 
         function onlyCopy() {
             const information = document.getElementById("InputInfo").value.trim();
-            ///if (!information) return;
+            if (!information) return;
+            let redirect = checkUriData(information);
+            if (!redirect) return;
+
             const url = `https://uris.nins.cc?who=${encodeURIComponent(information)}`;
             
             navigator.clipboard.writeText(url).then(() => {
                 copyButton.textContent = "✅";  // Copied 🔗  // 🎁
                 setTimeout(() => (copyButton.textContent = "🔗"), 2000);  // Copy URL 
-                ///document.getElementById("InputInfo").value = "";
+                document.getElementById("InputInfo").value = "";
+                ///document.getElementById('message').innerHTML = "🎁 Copied! Paste the link anywhere!";
+                ///document.getElementById('message').innerHTML = "🎁 Link has been copied and is ready to paste!";
+                document.getElementById('message').innerHTML = "🎁 Link has been copied! Paste it wherever you like!";
             });
         }
         function updateAndCopy() {
@@ -592,7 +598,7 @@
             if (!information) {
                 copyButton.textContent = "⚠️";
                 ///copyButton.textContent = "⚠️ Missing 🔗";
-                setTimeout(() => (copyButton.textContent = "🔗"), 2000);  // Copy URL 
+                //////setTimeout(() => (copyButton.textContent = "🔗"), 2000);  // Copy URL 
                 return;
             }
 
@@ -602,7 +608,7 @@
             if (!redirect) {
                 copyButton.textContent = "⚠️";
                 ///copyButton.textContent = "⚠️ ERROR 🔗";
-                setTimeout(() => (copyButton.textContent = "🔗"), 2000);  // Copy URL 
+                //////setTimeout(() => (copyButton.textContent = "🔗"), 2000);  // Copy URL 
                 return;
             }
 
@@ -629,6 +635,7 @@
 
             if (true) {
                 copyButton.textContent = "🎁";
+                //////setTimeout(() => (copyButton.textContent = "🎁"), 2000);
                 document.getElementById('message').innerHTML = '✅ Meets the standard protocol.';
             }
         }
