@@ -392,7 +392,8 @@
         
         if (recipient) {
             // 3. Build the uris link
-            let urisUrl = `${recipient}`;
+            ///let urisUrl = `${recipient}`;
+            let urisUrl = `${encodeURIComponent(recipient)}`;
 
             // Check if subject or body exist, then add them
             const params = [];
@@ -469,7 +470,8 @@
 
             ///const url = `https://duguaynins.github.io/uris/?who=${encodeURIComponent(information)}`;
             ///const url = `${url_op}?who=${encodeURIComponent(information)}`;
-            const url = `https://uris.nins.cc?who=${encodeURIComponent(information)}`;
+            ///const url = `https://uris.nins.cc?who=${encodeURIComponent(information)}`;
+            const url = `https://uris.nins.cc?who=${(information)}`;
             document.getElementById('message').innerHTML = `✅ <a href='${url}'>${url}</a> 🌐`;
             ///result.textContent = url;
 
