@@ -598,6 +598,7 @@
             ///if (!information) return;
             if (!information) { document.getElementById('message').innerHTML = '⚠️ You need to enter valid information. <a translate="no">(mailto:/tel:/sms:)<a>'; }
             if (!information) {
+                document.getElementById('miniURL').innerHTML = '💡 https://uris.nins.cc?who=';
                 copyButton.textContent = "⚠️";
                 ///copyButton.textContent = "⚠️ Missing 🔗";
                 //////setTimeout(() => (copyButton.textContent = "🔗"), 2000);  // Copy URL 
@@ -608,6 +609,7 @@
             ///if (!redirect) { document.getElementById('message').innerHTML = '⚠️ This is not a valid protocol <a translate="yes">(mailto:/tel:/sms:)<a>.'; }
             if (!redirect) { document.getElementById('message').innerHTML = '⚠️ You need to use a valid protocol. <a translate="no">(mailto:/tel:/sms:)<a>'; }
             if (!redirect) {
+                document.getElementById('miniURL').innerHTML = '💡 https://uris.nins.cc?who=';
                 copyButton.textContent = "⚠️";
                 ///copyButton.textContent = "⚠️ ERROR 🔗";
                 //////setTimeout(() => (copyButton.textContent = "🔗"), 2000);  // Copy URL 
