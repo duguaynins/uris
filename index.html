@@ -574,6 +574,13 @@
         const copyButton = document.getElementById("copyButton");
         ///const result = document.getElementById("result");
 
+        function onlyCopy() {
+            navigator.clipboard.writeText(url).then(() => {
+                copyButton.textContent = "✅";  // Copied 🔗  // 🎁
+                setTimeout(() => (copyButton.textContent = "🔗"), 2000);  // Copy URL 
+                ///document.getElementById("InputInfo").value = "";
+            });
+        }
         function updateAndCopy() {
             const information = document.getElementById("InputInfo").value.trim();
             ///if (!information) return;
@@ -609,11 +616,12 @@
             document.getElementById('miniURL').innerHTML = `✅ <a href='${url}'>${url}</a> 🌐`;
             ///result.textContent = url;
 
+            /*
             navigator.clipboard.writeText(url).then(() => {
                 copyButton.textContent = "✅";  // Copied 🔗  // 🎁
                 setTimeout(() => (copyButton.textContent = "🔗"), 2000);  // Copy URL 
                 ///document.getElementById("InputInfo").value = "";
-            });
+            }); */
 
             if (true) {
               document.getElementById('message').innerHTML = '✅ Meets the standard protocol.';
@@ -622,15 +630,17 @@
 
         // 持續監聽使用者輸入
         document.getElementById("InputInfo").addEventListener("input", (event) => {
-            console.log("input:", event.target.value);
-            updateAndCopy();
+            if (true) {
+                console.log("input:", event.target.value);
+                updateAndCopy();
+            }
         });
 
         // 按下 Enter 觸發複製
         document.getElementById("InputInfo").addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
                 e.preventDefault();
-                updateAndCopy();
+                updateAndCopy();onlyCopy();
                 document.getElementById("InputInfo").value = "";  // 20251110
             }
         });
@@ -640,7 +650,7 @@
         document.getElementById("copyButton").addEventListener("click", (e) => {
             if (true) {
                 e.preventDefault();
-                updateAndCopy();
+                updateAndCopy();onlyCopy();
                 document.getElementById("InputInfo").value = "";  // 20251110
             }
         });
