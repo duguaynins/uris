@@ -263,7 +263,7 @@
               <!-- 放置你原有的布局 -->
             
           <!-- 可選輸入框 -->
-          <u translate="no" style='text-decoration:none; color:black;'>*{A-Z}  {a-z}  {0-9}  {-/_/./~}*</u>
+          <u translate="no" style='text-decoration:none; color:black;'>*{A-Z}  {a-z}  {0-9}  {-/_/./~/@}*</u>
           
           <div id="sliderButton" style="
                       display: flex;
@@ -557,7 +557,9 @@
             ///else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. To create a redirect, please visit the original URL. <span translate="no">(<a href='${url_op}?' translate="no">${url_op}</a> 🌐)</span>`; }
             ///else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. To create a redirect, please visit the original URL. <span translate="no">(<a href='https://duguaynins.github.io/uris/?who=' translate="no">https://uris.nins.cc</a> 🌐)</span>`; }
             
-            if (!redirect && redirect !== null) { document.getElementById('message').innerHTML = '⚠️ This is not mailto/tel/sms.'; }
+            if (!redirect && redirect !== null) { 
+                document.getElementById('miniURL').innerHTML = '💡 https://uris.nins.cc?who=';
+                document.getElementById('message').innerHTML = '⚠️ This is not mailto/tel/sms.'; }
         } else {
             // Missing required recipient parameter
             if (urisMain === null) { console.log('✅'); }
