@@ -312,6 +312,19 @@
     <!-- ================================================== -->
 
     <script>
+        function parseScheme(input) {
+            // 使用正則取出協議與內容
+            const match = input.match(/^([a-zA-Z]+):(.*)$/);
+
+            if (match) {
+                const scheme = match[1] + ":";   // 例如 tel:
+                const recipient = match[2];      // 例如 +886909090909
+                return { scheme, recipient };
+            } else {
+                // 沒有協議時，回傳 null 並保持原始內容
+                return { scheme: null, recipient: input };
+            }
+        }
         function checkUriData(uriData) {
             let redirect = null;
 
