@@ -24,7 +24,7 @@
             align-items: center;      /* 水平置中 */
             text-align: center;       /* 文字置中 */
         }
-        input, button {
+        button {
             border: 2px solid #4CAF50; /* 綠色邊框 */
             border-radius: 6px;        /* 圓角 */
             padding: 8px 12px;
@@ -33,7 +33,7 @@
         }
 
         /* 聚焦時（使用者點入）變色 */
-        input:focus, button:focus {
+        button:focus {
             border-color: red;      /* 聚焦時變藍色 */
         }
     </style>
@@ -228,6 +228,8 @@
           <div style="margin: 10px;" onclick="document.getElementById('DialogShare').showModal()">
           nins/uris
           </div></div>
+          <u translate="no" style='text-decoration:none; color:black;'>*{A-Z}  {a-z}  {0-9}  {-/_/./~}*</u>
+          <!-- 可選額外說明 -->
           
               <!-- 放置你原有的布局 -->
               <div id="content" style="background: #FFFFFF; overflow:auto; width:100%; flex:1; border: 1px solid #ccc; color: black;">
@@ -243,16 +245,30 @@
                 <!--p id="hintURL">✨ ...!</p-->
                 <p id="miniURL" translate="no">💡 ...!</p>
                 <!--p id="message">💬 ...!</p-->
-                <div id="typeButton" style="display: flex; align-items: center; gap: 8px;">
-                    <button type="button" onclick="document.getElementById('informationInput').value='tel:12345678'">tel</button>
-                    <button type="button" onclick="document.getElementById('informationInput').value='sms:12345678'">sms</button>
-                    <button type="button" onclick="document.getElementById('informationInput').value='mailto:test@example.com'">mail</button>
-                </div>
               </div>
               <!-- 放置你原有的布局 -->
             
+          <!-- 可選輸入框 -->
+          
+          <div id="sliderButton" style="
+                      display: flex;
+                      /*flex-direction: row;  /* 上下==column */
+                      /*justify-content: center;*/
+                      justify-content: flex-start;  /* 左對齊較符合滾動預期 */
+                      flex-shrink: 0
+                      align-items: center;  /* 水平置中 canvas */
+                      /*overflow-y: auto;     /* 可垂直滾動 */
+                      overflow-x: auto;     /* 可水平滾動 */
+                  ">
+              
+              <button type="button" onclick="document.getElementById('InputInfo').value='mailto:test@example.com';updateAndCopy();">📧</button>
+              <button type="button" onclick="document.getElementById('InputInfo').value='tel:12345678';updateAndCopy();">📞</button>
+              <button type="button" onclick="document.getElementById('InputInfo').value='sms:12345678';updateAndCopy();">💬</button>
+              <button id="copyButton" onclick="">🔗</button>
+          </div>
+          <input class="main" id="InputInfo" type="text" name="noMemory" autocomplete="off" placeholder="" style="width: 100%; text-align: left;">
+          <!--input class="main" id="InputInfo" type="text" name="noMemory" autocomplete="off" placeholder="" style="width: 100%; text-align: center;"-->
           <!--strong></strong-->
-          <u translate="no" style='text-decoration:none; color:black;'>*{A-Z}  {a-z}  {0-9}  {-/_/./~}*</u>
           <div style="background: #FF3B00; color: white;" translate="yes">
           <div style="margin: 10px;" onclick="document.getElementById('DialogTool').showModal()">
           By sending a message to this service, it means you have agreed to any content and all content!
@@ -390,8 +406,10 @@
     <!-- ================================================== -->
 
     <script>
-        ///網址處理***
-
+        ///跳轉處理***
+        const url = window.location.href;
+        document.getElementById('miniURL').innerHTML = `✅ <a href='${url}'>${url}</a> 🌐`;
+        
         // 1. Get URL parameters
         const urlParams = new URLSearchParams(window.location.search);
 
@@ -412,12 +430,14 @@
         const subject = urlParams.get('subject');
         const body = urlParams.get('body');
         ///document.getElementById("nanoURL").innerHTML = "💡 （example →）<a style='text-decoration:none; color:black;' href='https://nins.uris.world' target='_blank' rel='noopener noreferrer'>https://<u style='color:red;'>nins</u>.uris.world</a>";
-        ///document.getElementById("miniURL").innerHTML = "💡 <u style='text-decoration:none; color:black;'>https://duguaynins.github.io/uris/?who=<input style='color:red;' type='text' id='informationInput' placeholder='' value='' size='35'> <button id='copyButton'>Copy URL 🔗</button></u>";  ///uris/index.html
+        ///document.getElementById("miniURL").innerHTML = "💡 <u style='text-decoration:none; color:black;'>https://duguaynins.github.io/uris/?who=<input style='color:red;' type='text' id='InputInfo' placeholder='' value='' size='35'> <button id='copyButton'>Copy URL 🔗</button></u>";  ///uris/index.html
         ///document.getElementById("message").innerHTML = '✨ Simply enter your information after "who=" to get your "free HTTPS URL" for your information.';
         
-        ///document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>${url_op}?who=<input style='color:red;' type='text' id='informationInput' placeholder='' value='' size='35'> <button id='copyButton'>Copy URL 🔗</button></u>`;  ///uris/index.html
-        document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>https://uris.nins.cc?who=<input style='color:red; width: 90vw;' type='text' id='informationInput' placeholder='' value=''> <button id='copyButton'>Copy URL 🔗</button></u>`;  ///uris/index.html
-        
+        ///document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>${url_op}?who=<input style='color:red;' type='text' id='InputInfo' placeholder='' value='' size='35'> <button id='copyButton'>Copy URL 🔗</button></u>`;  ///uris/index.html
+        ///document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>https://uris.nins.cc?who=<input style='color:red; width: 90vw;' type='text' id='InputInfo' placeholder='' value=''> <button id='copyButton'>Copy URL 🔗</button></u>`;  ///uris/index.html
+        document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>https://uris.nins.cc?who=</u>`;  ///uris/index.html
+        ///暫時取消跳轉輸入
+
         if (urisMain) {
             // 3. Build the uris link
 
@@ -435,10 +455,10 @@
             let urisUrl = "";
             if (isEncoded(recipient)) { urisUrl = `${recipient}` } // ✅
             else { urisUrl = `${scheme}${encodeURIComponent(recipient)}`; } */
-            document.getElementById("informationInput").value = decodeURIComponent(urisMain);
-            document.getElementById("informationInput").disabled = true;
+            document.getElementById("InputInfo").value = decodeURIComponent(urisMain);
+            document.getElementById("InputInfo").disabled = true;
             document.getElementById("copyButton").style.display = "none";
-            document.getElementById("typeButton").style.display = "none";
+            document.getElementById("sliderButton").style.display = "none";
 
             /*
             // Check if subject or body exist, then add them
@@ -491,17 +511,18 @@
     <script>
         ///複製與回車***
 
-        ///const input = document.getElementById("informationInput");
+        ///const input = document.getElementById("InputInfo");
         const copyButton = document.getElementById("copyButton");
         ///const result = document.getElementById("result");
 
         function updateAndCopy() {
-            const information = document.getElementById("informationInput").value.trim();
+            const information = document.getElementById("InputInfo").value.trim();
             ///if (!information) return;
             if (!information) { document.getElementById('message').innerHTML = '⚠️ You need to enter valid information. <a translate="no">(mailto:/tel:/sms:)<a>'; }
             if (!information) {
-                copyButton.textContent = "⚠️ Missing 🔗";
-                setTimeout(() => (copyButton.textContent = "Copy URL 🔗"), 2000);
+                copyButton.textContent = "⚠️";
+                ///copyButton.textContent = "⚠️ Missing 🔗";
+                setTimeout(() => (copyButton.textContent = "🔗"), 2000);  // Copy URL 
                 return;
             }
 
@@ -509,8 +530,9 @@
             ///if (!redirect) { document.getElementById('message').innerHTML = '⚠️ This is not a valid protocol <a translate="yes">(mailto:/tel:/sms:)<a>.'; }
             if (!redirect) { document.getElementById('message').innerHTML = '⚠️ You need to use a valid protocol. <a translate="no">(mailto:/tel:/sms:)<a>'; }
             if (!redirect) {
-                copyButton.textContent = "⚠️ ERROR 🔗";
-                setTimeout(() => (copyButton.textContent = "Copy URL 🔗"), 2000);
+                copyButton.textContent = "⚠️";
+                ///copyButton.textContent = "⚠️ ERROR 🔗";
+                setTimeout(() => (copyButton.textContent = "🔗"), 2000);  // Copy URL 
                 return;
             }
 
@@ -524,28 +546,29 @@
             else { url = `https://uris.nins.cc?who=${encodeURIComponent(information)}`; } */
             const url = `https://uris.nins.cc?who=${encodeURIComponent(information)}`;
 
-            document.getElementById('message').innerHTML = `✅ <a href='${url}'>${url}</a> 🌐`;
+            ///document.getElementById('message').innerHTML = `✅ <a href='${url}'>${url}</a> 🌐`;
+            document.getElementById('miniURL').innerHTML = `✅ <a href='${url}'>${url}</a> 🌐`;
             ///result.textContent = url;
 
             navigator.clipboard.writeText(url).then(() => {
-                copyButton.textContent = "✅ Copied 🔗";
-                setTimeout(() => (copyButton.textContent = "Copy URL 🔗"), 2000);
-                ///document.getElementById("informationInput").value = "";
+                copyButton.textContent = "✅";  // Copied 🔗  // 🎁
+                setTimeout(() => (copyButton.textContent = "🔗"), 2000);  // Copy URL 
+                ///document.getElementById("InputInfo").value = "";
             });
         }
 
         // 持續監聽使用者輸入
-        document.getElementById("informationInput").addEventListener("input", (event) => {
+        document.getElementById("InputInfo").addEventListener("input", (event) => {
             console.log("input:", event.target.value);
             updateAndCopy();
         });
 
         // 按下 Enter 觸發複製
-        document.getElementById("informationInput").addEventListener("keydown", (e) => {
+        document.getElementById("InputInfo").addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
                 e.preventDefault();
                 updateAndCopy();
-                document.getElementById("informationInput").value = "";  // 20251110
+                document.getElementById("InputInfo").value = "";  // 20251110
             }
         });
 
@@ -555,7 +578,7 @@
             if (true) {
                 e.preventDefault();
                 updateAndCopy();
-                document.getElementById("informationInput").value = "";  // 20251110
+                document.getElementById("InputInfo").value = "";  // 20251110
             }
         });
     </script>
@@ -578,7 +601,7 @@
         ];
 
         let index = 0;
-        const input = document.getElementById("informationInput");
+        const input = document.getElementById("InputInfo");
 
         // 每 1 秒變更一次 placeholder
         setInterval(() => {
@@ -589,7 +612,7 @@
     <!-- ================================================== -->
     
     <script>
-        document.getElementById("informationInput").addEventListener("focus", () => {
+        document.getElementById("InputInfo").addEventListener("focus", () => {
             console.log("第一次聚焦觸發");
             document.getElementById("message").innerHTML = '✨ Simply enter your information after "who=" to get your "free HTTPS URL" for your information.';
         
