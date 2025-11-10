@@ -410,7 +410,7 @@
             const { scheme, recipient } = parseScheme(urisMain); // ✅
 
             ///let urisUrl = `${recipient}`;
-            let urisUrl = `${scheme}$${encodeURIComponent(recipient)}`;
+            let urisUrl = `${scheme}${encodeURIComponent(recipient)}`;
 
             // Check if subject or body exist, then add them
             const params = [];
