@@ -228,7 +228,7 @@
           <div style="margin: 10px;" onclick="document.getElementById('DialogShare').showModal()">
           nins/uris
           </div></div>
-          <!--u translate="no" style='text-decoration:none; color:black;'>*{A-Z}  {a-z}  {0-9}  {-/_/./~}*</u-->
+          <u translate="no" style='text-decoration:none; color:black;'>*{A-Z}  {a-z}  {0-9}  {-/_/./~}*</u>
           <!-- 可選額外說明 -->
           
               <!-- 放置你原有的布局 -->
@@ -241,7 +241,9 @@
                 <!--p id="message">📌 If you really need a shorter information redirect link, We welcome you to contact us. <span translate="no">(mailto:<a style='color:red;' href='mailto:duguaynins@gmail.com'>duguaynins@gmail.com</a> 📧)</span></p-->
                 
                 <p id="message">📌 If you really need a shorter information redirect link, We welcome you to contact us. 
-                    <span translate="no">(mailto:<a style='color:red;' href="mailto:duguaynins@gmail.com?subject=Hi%20Nins!%20Request%20for%20Short%20Link!&body=Thank%20you.">duguaynins@gmail.com</a> 📧)</span>
+                    <span translate="no">(mailto:
+                        <a style='color:red;' href="mailto:duguaynins@gmail.com?subject=Hi%20Nins!%20Request%20for%20Short%20Link!&body=Thank%20you.">duguaynins@gmail.com</a> 📧)
+                    </span>
                 </p>
                 
                 <!--p id="message" style="color: #999999;">💬 ...!</p-->
@@ -275,18 +277,41 @@
           <!--input class="main" id="InputInfo" type="text" name="noMemory" autocomplete="off" placeholder="" style="width: 100%; text-align: center;"-->
           <!--strong></strong-->
           <div style="background: #FF3B00; color: white;" translate="yes">
-          <div style="margin: 10px;" onclick="document.getElementById('DialogTool').showModal()">
+          <div style="margin: 10px;" onclick="document.getElementById('DialogLog').showModal();console.log('🛠️');">
           By sending a message to this service, it means you have agreed to any content and all content!
           </div></div>
     </div>
-    <!-- ================================================== -->
+    <dialog id="DialogLog">
+        <pre id="logOutput" style="max-height:200px; overflow:auto; margin:0;"></pre>
+        <button id="openLog" onclick="document.getElementById('DialogLog').close();console.log('❌');">❌</button>
+
+    </dialog>
+    <!-- HTML ================================================== -->
 
     <script>
-      const url_href = window.location.href;
-      const url_op = window.location.origin + window.location.pathname;  ///https://example.com + /page/subpage
-      const url_sh = window.location.search + window.location.hash;  ///?x=1 + #section
+        const dialog = document.getElementById('DialogLog');
+        const logOutput = document.getElementById('logOutput');
+
+        const _log = console.log;
+        console.log = function(...args) {
+          _log.apply(console, args);
+
+          const text = args.map(a =>
+            typeof a === 'object' ? JSON.stringify(a) : String(a)
+          ).join(' ');
+
+          logOutput.insertAdjacentHTML('beforeend', text + '\n');
+          logOutput.scrollTop = logOutput.scrollHeight; // ✅ 自動滾到底
+        };
     </script>
-    <!-- ================================================== -->
+    <!-- LOG ================================================== -->
+
+    <script>
+        const url_href = window.location.href;
+        const url_op = window.location.origin + window.location.pathname;  ///https://example.com + /page/subpage
+        const url_sh = window.location.search + window.location.hash;  ///?x=1 + #section
+    </script>
+    <!-- URL ================================================== -->
 
     <script type="text/javascript">  // google.js
       // GOOGLE TRANSLATE
@@ -327,10 +352,8 @@
       });
     </script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    <!-- ================================================== -->
+    <!-- TRANSLATE ================================================== -->
     
-    <!-- 放置你原有的布局 -->
-    <!-- 放置你原有的布局 -->
 
     
     <!-- ================================================== -->
