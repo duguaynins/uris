@@ -406,7 +406,8 @@
         if (urisMain) {
             // 3. Build the uris link
 
-            const [scheme, recipient] = parseScheme(urisMain);
+            ///const [scheme, recipient] = parseScheme(urisMain);
+            const { scheme, recipient } = parseScheme(urisMain); // ✅
 
             ///let urisUrl = `${recipient}`;
             let urisUrl = `${scheme}$${encodeURIComponent(recipient)}`;
