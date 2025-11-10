@@ -246,7 +246,7 @@
                 <!--p id="hintURL">✨ ...!</p-->
                 <p id="miniURL" translate="no">💡 ...!</p>
                 <!--p id="message">💬 ...!</p-->
-                <div style="display: flex; align-items: center; gap: 8px;">
+                <div id="typeButton" style="display: flex; align-items: center; gap: 8px;">
                     <button type="button" onclick="document.getElementById('informationInput').value='tel:12345678'">tel</button>
                     <button type="button" onclick="document.getElementById('informationInput').value='sms:12345678'">sms</button>
                     <button type="button" onclick="document.getElementById('informationInput').value='mailto:test@example.com'">mail</button>
@@ -440,6 +440,8 @@
             else { urisUrl = `${scheme}${encodeURIComponent(recipient)}`; } */
             document.getElementById("informationInput").value = decodeURIComponent(urisMain);
             document.getElementById("informationInput").disabled = true;
+            document.getElementById("copyButton").style.display = "none";
+            document.getElementById("typeButton").style.display = "none";
 
             /*
             // Check if subject or body exist, then add them
@@ -479,7 +481,7 @@
             ///else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. To create a redirect, please visit the original URL. <a translate="no">(<a href='${url_op}?' translate="no">${url_op}</a> 🌐)</a>`; }
             ///else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. To create a redirect, please visit the original URL. <a translate="no">(<a href='https://duguaynins.github.io/uris/?who=' translate="no">https://uris.nins.cc</a> 🌐)</a>`; }
             
-            if (!redirect) { document.getElementById('message').innerHTML = '⚠️ This is not mailto/tel/sms.'; }
+            if (!redirect && redirect !== null) { document.getElementById('message').innerHTML = '⚠️ This is not mailto/tel/sms.'; }
         } else {
             // Missing required recipient parameter
             if (true === null) { console.log('✅'); }
@@ -531,20 +533,34 @@
             navigator.clipboard.writeText(url).then(() => {
                 copyButton.textContent = "✅ Copied 🔗";
                 setTimeout(() => (copyButton.textContent = "Copy URL 🔗"), 2000);
-                document.getElementById("informationInput").value = "";
+                ///document.getElementById("informationInput").value = "";
             });
         }
 
+        // 持續監聽使用者輸入
+        document.getElementById("informationInput").addEventListener("input", (event) => {
+            console.log("input:", event.target.value);
+            updateAndCopy();
+        });
+
         // 按下 Enter 觸發複製
         document.getElementById("informationInput").addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-            e.preventDefault();
-            updateAndCopy();
-        }
+            if (e.key === "Enter") {
+                e.preventDefault();
+                updateAndCopy();
+                document.getElementById("informationInput").value = "";  // 20251110
+            }
         });
 
         // 按下 Copy 按鈕
-        copyButton.addEventListener("click", updateAndCopy);
+        ///document.getElementById("copyButton").addEventListener("click", updateAndCopy);
+        document.getElementById("copyButton").addEventListener("click", (e) => {
+            if (true) {
+                e.preventDefault();
+                updateAndCopy();
+                document.getElementById("informationInput").value = "";  // 20251110
+            }
+        });
     </script>
     <!-- ================================================== -->
 
