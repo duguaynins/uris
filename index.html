@@ -501,9 +501,9 @@
             ///document.getElementById('message').innerText = `The information will be sent to: ${recipient}. Please make sure your information client is open.`;
             ///document.getElementById('message').innerHTML = `📧 The recipient information will be pre-filled. If it fails, the redirect will not occur. In that case, please use this information to contact (${recipient}).`;
             if (urisMain === null) { console.log('✅'); }
-            else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. To create a redirect, please visit the original URL. <a translate="no">(<a href='https://uris.nins.cc?' translate="no">https://uris.nins.cc</a> 🌐)</a>`; }
-            ///else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. To create a redirect, please visit the original URL. <a translate="no">(<a href='${url_op}?' translate="no">${url_op}</a> 🌐)</a>`; }
-            ///else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. To create a redirect, please visit the original URL. <a translate="no">(<a href='https://duguaynins.github.io/uris/?who=' translate="no">https://uris.nins.cc</a> 🌐)</a>`; }
+            else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. To create a redirect, please visit the original URL. <span translate="no">(<a href='https://uris.nins.cc?' translate="no">https://uris.nins.cc</a> 🌐)</span>`; }
+            ///else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. To create a redirect, please visit the original URL. <span translate="no">(<a href='${url_op}?' translate="no">${url_op}</a> 🌐)</span>`; }
+            ///else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. To create a redirect, please visit the original URL. <span translate="no">(<a href='https://duguaynins.github.io/uris/?who=' translate="no">https://uris.nins.cc</a> 🌐)</span>`; }
             
             if (!redirect && redirect !== null) { document.getElementById('message').innerHTML = '⚠️ This is not mailto/tel/sms.'; }
         } else {
