@@ -423,7 +423,11 @@
         if (urisMain) {
             // 3. Build the uris link
 
-            let urisUrl = `${urisMain}`;
+            ///let urisUrl = `${urisMain}`;  // 可能需要解碼再使用為穩定？？
+            console.log(urisMain);
+            console.log(decodeURIComponent(urisMain));
+            let urisUrl = `${decodeURIComponent(urisMain)}`;  // 解碼全部 ✅
+
             ///const [scheme, recipient] = parseScheme(urisMain); // 陣列用
             ///const { scheme, recipient } = parseScheme(urisMain); // 字典用 ✅
 
@@ -435,6 +439,8 @@
             else { urisUrl = `${scheme}${encodeURIComponent(recipient)}`; } */
             document.getElementById("informationInput").value = decodeURIComponent(urisMain);
             document.getElementById("informationInput").disabled = true;
+
+            /*
             // Check if subject or body exist, then add them
             const params = [];
             if (subject) {
@@ -448,7 +454,7 @@
             // If there are parameters, append them with '?'
             if (params.length > 0) {
                 urisUrl += '?' + params.join('&');
-            }
+            } */
 
             // 4. Redirect to uris link
             // This triggers the uris protocol
