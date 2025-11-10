@@ -319,6 +319,8 @@
             if (match) {
                 const scheme = match[1] + ":";   // 例如 tel:
                 const recipient = match[2];      // 例如 +886909090909
+                console.log("協議：", scheme);
+                console.log("內容：", recipient);
                 return { scheme, recipient };
             } else {
                 // 沒有協議時，回傳 null 並保持原始內容
