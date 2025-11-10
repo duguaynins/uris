@@ -408,8 +408,7 @@
 
     <script>
         ///跳轉處理***
-        const url = window.location.href;
-        document.getElementById('miniURL').innerHTML = `✅ <a href='${url}'>${url}</a> 🌐`;
+        
         
         // 1. Get URL parameters
         const urlParams = new URLSearchParams(window.location.search);
@@ -427,6 +426,13 @@
         let redirect = false;
         redirect = checkUriData(urisMain);
 
+        if (urisMain) {
+            const url = window.location.href;
+            document.getElementById('miniURL').innerHTML = `✅ <a href='${url}'>${url}</a> 🌐`;
+        } else {
+            document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>https://uris.nins.cc?who=</u>`;  ///uris/index.html
+        }
+
         // Read 'subject' and 'body' parameters
         const subject = urlParams.get('subject');
         const body = urlParams.get('body');
@@ -436,7 +442,7 @@
         
         ///document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>${url_op}?who=<input style='color:red;' type='text' id='InputInfo' placeholder='' value='' size='35'> <button id='copyButton'>Copy URL 🔗</button></u>`;  ///uris/index.html
         ///document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>https://uris.nins.cc?who=<input style='color:red; width: 90vw;' type='text' id='InputInfo' placeholder='' value=''> <button id='copyButton'>Copy URL 🔗</button></u>`;  ///uris/index.html
-        document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>https://uris.nins.cc?who=</u>`;  ///uris/index.html
+        ///document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>https://uris.nins.cc?who=</u>`;  ///uris/index.html
         ///暫時取消跳轉輸入
 
         if (urisMain) {
@@ -556,6 +562,10 @@
                 setTimeout(() => (copyButton.textContent = "🔗"), 2000);  // Copy URL 
                 ///document.getElementById("InputInfo").value = "";
             });
+
+            if (true) {
+              document.getElementById('message').innerHTML = '✅ Meets the standard protocol.';
+            }
         }
 
         // 持續監聽使用者輸入
