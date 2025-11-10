@@ -24,9 +24,6 @@
             align-items: center;      /* 水平置中 */
             text-align: center;       /* 文字置中 */
         }
-        input {
-          width: 90vw;
-        }
         input, button {
             border: 2px solid #4CAF50; /* 綠色邊框 */
             border-radius: 6px;        /* 圓角 */
@@ -419,7 +416,7 @@
         ///document.getElementById("message").innerHTML = '✨ Simply enter your information after "who=" to get your "free HTTPS URL" for your information.';
         
         ///document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>${url_op}?who=<input style='color:red;' type='text' id='informationInput' placeholder='' value='' size='35'> <button id='copyButton'>Copy URL 🔗</button></u>`;  ///uris/index.html
-        document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>https://uris.nins.cc?who=<input style='color:red;' type='text' id='informationInput' placeholder='' value='' size='35'> <button id='copyButton'>Copy URL 🔗</button></u>`;  ///uris/index.html
+        document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>https://uris.nins.cc?who=<input style='color:red; width: 90vw;' type='text' id='informationInput' placeholder='' value=''> <button id='copyButton'>Copy URL 🔗</button></u>`;  ///uris/index.html
         
         if (urisMain) {
             // 3. Build the uris link
@@ -476,7 +473,7 @@
             // Show message to user
             ///document.getElementById('message').innerText = `The information will be sent to: ${recipient}. Please make sure your information client is open.`;
             ///document.getElementById('message').innerHTML = `📧 The recipient information will be pre-filled. If it fails, the redirect will not occur. In that case, please use this information to contact (${recipient}).`;
-            if (true === null) { console.log('✅'); }
+            if (urisMain === null) { console.log('✅'); }
             else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. To create a redirect, please visit the original URL. <a translate="no">(<a href='https://uris.nins.cc?' translate="no">https://uris.nins.cc</a> 🌐)</a>`; }
             ///else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. To create a redirect, please visit the original URL. <a translate="no">(<a href='${url_op}?' translate="no">${url_op}</a> 🌐)</a>`; }
             ///else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. To create a redirect, please visit the original URL. <a translate="no">(<a href='https://duguaynins.github.io/uris/?who=' translate="no">https://uris.nins.cc</a> 🌐)</a>`; }
@@ -484,7 +481,7 @@
             if (!redirect && redirect !== null) { document.getElementById('message').innerHTML = '⚠️ This is not mailto/tel/sms.'; }
         } else {
             // Missing required recipient parameter
-            if (true === null) { console.log('✅'); }
+            if (urisMain === null) { console.log('✅'); }
             else { document.getElementById('message').innerHTML = '⚠️ Missing recipient information in the URL parameter (?who=...).'; }
             
         }
