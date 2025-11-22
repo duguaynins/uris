@@ -477,7 +477,7 @@
                        || urlParams.get('to');*/
         
         const data = location.hash.substring(1) || new URLSearchParams(location.search).get('data');
-        const urisMain = data;
+        const urisMain = decodeURIComponent(data);
         let redirect = false;
         redirect = checkUriData(urisMain);
 
