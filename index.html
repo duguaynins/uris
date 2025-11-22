@@ -485,19 +485,19 @@
             const url = window.location.href;
             document.getElementById('miniURL').innerHTML = `✅ <a href='${url}'>${url}</a> 🌐`;
         } else {
-            document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>https://uris.nins.cc?data=</u>`;  ///uris/index.html
+            document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>https://uris.nins.cc?#</u>`;  ///uris/index.html
         }
 
         // Read 'subject' and 'body' parameters
         const subject = urlParams.get('subject');
         const body = urlParams.get('body');
         ///document.getElementById("nanoURL").innerHTML = "💡 （example →）<a style='text-decoration:none; color:black;' href='https://nins.uris.world' target='_blank' rel='noopener noreferrer'>https://<u style='color:red;'>nins</u>.uris.world</a>";
-        ///document.getElementById("miniURL").innerHTML = "💡 <u style='text-decoration:none; color:black;'>https://duguaynins.github.io/uris/?data=<input style='color:red;' type='text' id='InputInfo' placeholder='' value='' size='35'> <button id='copyButton'>Copy URL 🔗</button></u>";  ///uris/index.html
+        ///document.getElementById("miniURL").innerHTML = "💡 <u style='text-decoration:none; color:black;'>https://duguaynins.github.io/uris/?#<input style='color:red;' type='text' id='InputInfo' placeholder='' value='' size='35'> <button id='copyButton'>Copy URL 🔗</button></u>";  ///uris/index.html
         ///document.getElementById("message").innerHTML = '✨ Simply enter your information after "data=" to get your "free HTTPS URL" for your information.';
         
-        ///document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>${url_op}?data=<input style='color:red;' type='text' id='InputInfo' placeholder='' value='' size='35'> <button id='copyButton'>Copy URL 🔗</button></u>`;  ///uris/index.html
-        ///document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>https://uris.nins.cc?data=<input style='color:red; width: 90vw;' type='text' id='InputInfo' placeholder='' value=''> <button id='copyButton'>Copy URL 🔗</button></u>`;  ///uris/index.html
-        ///document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>https://uris.nins.cc?data=</u>`;  ///uris/index.html
+        ///document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>${url_op}?#<input style='color:red;' type='text' id='InputInfo' placeholder='' value='' size='35'> <button id='copyButton'>Copy URL 🔗</button></u>`;  ///uris/index.html
+        ///document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>https://uris.nins.cc?#<input style='color:red; width: 90vw;' type='text' id='InputInfo' placeholder='' value=''> <button id='copyButton'>Copy URL 🔗</button></u>`;  ///uris/index.html
+        ///document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>https://uris.nins.cc?#</u>`;  ///uris/index.html
         ///暫時取消跳轉輸入
 
         if (urisMain) {
@@ -558,15 +558,15 @@
             if (urisMain === null) { console.log('✅'); }
             else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. To create a redirect, please visit the original URL. <span translate="no">(<a href='https://uris.nins.cc?' translate="no">https://uris.nins.cc</a> 🌐)</span>`; }
             ///else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. To create a redirect, please visit the original URL. <span translate="no">(<a href='${url_op}?' translate="no">${url_op}</a> 🌐)</span>`; }
-            ///else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. To create a redirect, please visit the original URL. <span translate="no">(<a href='https://duguaynins.github.io/uris/?data=' translate="no">https://uris.nins.cc</a> 🌐)</span>`; }
+            ///else { document.getElementById('message').innerHTML = `✅ Fallback redirect is active and the page is locked. To create a redirect, please visit the original URL. <span translate="no">(<a href='https://duguaynins.github.io/uris/?#' translate="no">https://uris.nins.cc</a> 🌐)</span>`; }
             
             if (!redirect && redirect !== null) { 
-                document.getElementById('miniURL').innerHTML = '💡 https://uris.nins.cc?data=';
+                document.getElementById('miniURL').innerHTML = '💡 https://uris.nins.cc?#';
                 document.getElementById('message').innerHTML = '⚠️ This is not mailto/tel/sms.'; }
         } else {
             // Missing required recipient parameter
             if (urisMain === null) { console.log('✅'); }
-            else { document.getElementById('message').innerHTML = '⚠️ Missing recipient information in the URL parameter (?data=...).'; }
+            else { document.getElementById('message').innerHTML = '⚠️ Missing recipient information in the URL parameter (?#...).'; }
             
         }
     </script>
@@ -585,7 +585,7 @@
             let redirect = checkUriData(information);
             if (!redirect) return;
 
-            const url = `https://uris.nins.cc?data=${encodeURIComponent(information)}`;
+            const url = `https://uris.nins.cc?#${encodeURIComponent(information)}`;
             
             navigator.clipboard.writeText(url).then(() => {
                 copyButton.textContent = "✅";  // Copied 🔗  // 🎁
@@ -598,10 +598,11 @@
         }
         function updateAndCopy() {
             const information = document.getElementById("InputInfo").value.trim();
+            
             ///if (!information) return;
             if (!information) { document.getElementById('message').innerHTML = '⚠️ You need to enter valid information. <a translate="no">(mailto:/tel:/sms:)<a>'; }
             if (!information) {
-                document.getElementById('miniURL').innerHTML = '💡 https://uris.nins.cc?data=';
+                document.getElementById('miniURL').innerHTML = '💡 https://uris.nins.cc?#';
                 copyButton.textContent = "⚠️";
                 ///copyButton.textContent = "⚠️ Missing 🔗";
                 //////setTimeout(() => (copyButton.textContent = "🔗"), 2000);  // Copy URL 
@@ -612,22 +613,22 @@
             ///if (!redirect) { document.getElementById('message').innerHTML = '⚠️ This is not a valid protocol <a translate="yes">(mailto:/tel:/sms:)<a>.'; }
             if (!redirect) { document.getElementById('message').innerHTML = '⚠️ You need to use a valid protocol. <a translate="no">(mailto:/tel:/sms:)<a>'; }
             if (!redirect) {
-                document.getElementById('miniURL').innerHTML = '💡 https://uris.nins.cc?data=';
+                document.getElementById('miniURL').innerHTML = '💡 https://uris.nins.cc?#';
                 copyButton.textContent = "⚠️";
                 ///copyButton.textContent = "⚠️ ERROR 🔗";
                 //////setTimeout(() => (copyButton.textContent = "🔗"), 2000);  // Copy URL 
                 return;
             }
 
-            ///const url = `https://duguaynins.github.io/uris/?data=${encodeURIComponent(information)}`;
-            ///const url = `${url_op}?data=${encodeURIComponent(information)}`;
-            ///const url = `https://uris.nins.cc?data=${encodeURIComponent(information)}`;
-            ///const url = `https://uris.nins.cc?data=${(information)}`;
+            ///const url = `https://duguaynins.github.io/uris/?#${encodeURIComponent(information)}`;
+            ///const url = `${url_op}?#${encodeURIComponent(information)}`;
+            ///const url = `https://uris.nins.cc?#${encodeURIComponent(information)}`;
+            ///const url = `https://uris.nins.cc?#${(information)}`;
             /*
             const url = "";
-            if (isEncoded(recipient)) { url = `https://uris.nins.cc?data=${(information)}` } // ✅
-            else { url = `https://uris.nins.cc?data=${encodeURIComponent(information)}`; } */
-            const url = `https://uris.nins.cc?data=${encodeURIComponent(information)}`;
+            if (isEncoded(recipient)) { url = `https://uris.nins.cc?#${(information)}` } // ✅
+            else { url = `https://uris.nins.cc?#${encodeURIComponent(information)}`; } */
+            const url = `https://uris.nins.cc?#${encodeURIComponent(information)}`;
 
             ///document.getElementById('message').innerHTML = `✅ <a href='${url}'>${url}</a> 🌐`;
             document.getElementById('miniURL').innerHTML = `✅ <a href='${url}'>${url}</a> 🌐`;
@@ -706,7 +707,7 @@
     <script>
         document.getElementById("InputInfo").addEventListener("focus", () => {
             console.log("第一次聚焦觸發");
-            document.getElementById("message").innerHTML = '✨ Simply enter your information after "data=" to get your "free HTTPS URL" for your information.';
+            document.getElementById("message").innerHTML = '✨ Simply enter your information after "#" to get your "free HTTPS URL" for your information.';
         
         }, { once: true }); // ✅ 只執行一次
     </script>
