@@ -466,7 +466,8 @@
         const urlParams = new URLSearchParams(window.location.search);
 
         // 2. Read the 'redirect' parameter as recipient ID
-        const urisMain = urlParams.get('data');
+
+        ///const urisMain = urlParams.get('data');
         ///const urisMain = urlParams.get('redirect');
         ///const urisMain = urlParams.get('to');
         /*
@@ -475,6 +476,8 @@
                        || urlParams.get('go')
                        || urlParams.get('to');*/
         
+        const data = location.hash.substring(1) || new URLSearchParams(location.search).get('data');
+        const urisMain = data;
         let redirect = false;
         redirect = checkUriData(urisMain);
 
