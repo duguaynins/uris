@@ -470,7 +470,7 @@
         // 3. Result
         if (!redirect && redirect !== null) { 
             // Not a valid
-            document.getElementById('miniURL').innerHTML = '💡 https://uris.nins.cc/?#';
+            document.getElementById('miniURL').innerHTML = '💡 https://uris.nins.cc/?data=#';
             document.getElementById('message').innerHTML = '⚠️ This is not a valid protocol. <a translate="no">(mailto:/tel:/sms:)<a>'; 
         
         } else if (redirect && urisMain) {
@@ -491,12 +491,12 @@
         
         } else if (!redirect && !urisMain) {
             // New page
-            document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>https://uris.nins.cc/?#</u>`;  ///uris/index.html
+            document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>https://uris.nins.cc/?data=#</u>`;  ///uris/index.html
             document.getElementById("message").innerHTML = `📌 If you really need a shorter information redirect link, We welcome you to contact us. <span translate="no">(mailto:<a style='color:red;' href="mailto:duguaynins@gmail.com?subject=Hi%20Nins!%20Request%20for%20Short%20Link!&body=Thank%20you.">duguaynins@gmail.com</a> 📧)</span>`
         } else {
             // Missing required recipient parameter
-            document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>https://uris.nins.cc/?#</u>`;  ///uris/index.html
-            document.getElementById('message').innerHTML = '⚠️ Missing recipient information in the URL parameter (/?#...).';
+            document.getElementById("miniURL").innerHTML = `💡 <u style='text-decoration:none; color:black;'>https://uris.nins.cc/?data=#</u>`;  ///uris/index.html
+            document.getElementById('message').innerHTML = '⚠️ Missing recipient information in the URL parameter (/?data=#...).';
         }
 
         
