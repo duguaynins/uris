@@ -531,7 +531,7 @@
             navigator.clipboard.writeText(url).then(() => {
                 copyButton.textContent = "✅";  // Copied 🔗  // 🎁
                 setTimeout(() => (copyButton.textContent = "🔗"), 2000);  // Copy URL 
-                document.getElementById("InputInfo").value = "";
+                ///document.getElementById("InputInfo").value = "";  // test***
                 ///document.getElementById('message').innerHTML = "🎁 Copied! Paste the link anywhere!";
                 ///document.getElementById('message').innerHTML = "🎁 Link has been copied and is ready to paste!";
                 document.getElementById('message').innerHTML = "🎁 Link has been copied! Paste it wherever you like!";
