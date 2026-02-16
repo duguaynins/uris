@@ -478,8 +478,8 @@ function onlyCopy() {
     if (!redirect) return;
 
     const url = `https://uris.nins.cc/?data=${encodeURIComponent(information)}`;
-    ///const encoding = "https://encoding.nins.cc/?data=" + encodeURIComponent(url);
-    const encoding = "https://copyright.nins.cc/children/encoding?data=" + encodeURIComponent(url);
+    const encoding = "https://encoding.nins.cc/?data=" + encodeURIComponent(url);
+    ///const encoding = "https://copyright.nins.cc/children/encoding?data=" + encodeURIComponent(url);
     
     navigator.clipboard.writeText(url).then(() => {
         copyButton.textContent = "✅";  // Copied 🔗  // 🎁
@@ -530,8 +530,8 @@ function updateAndCopy() {
     if (isEncoded(recipient)) { url = `https://uris.nins.cc/?data=${(information)}` } // ✅
     else { url = `https://uris.nins.cc/?data=${encodeURIComponent(information)}`; } */
     const url = `https://uris.nins.cc/?data=${encodeURIComponent(information)}`;
-    ///const encoding = "https://encoding.nins.cc/?data=" + encodeURIComponent(url);
-    const encoding = "https://copyright.nins.cc/children/encoding?data=" + encodeURIComponent(url);
+    const encoding = "https://encoding.nins.cc/?data=" + encodeURIComponent(url);
+    ///const encoding = "https://copyright.nins.cc/children/encoding?data=" + encodeURIComponent(url);
 
     ///document.getElementById('message').innerHTML = `✅ <a href='${url}'>${url}</a> 🌐`;
     ///document.getElementById('miniURL').innerHTML = `✅ <a href='${url}'>${url}</a> 🌐`;
