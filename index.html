@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <meta name="description" content="© 2024 NINS (by JPGT). By using any of the services, it means you have agreed to any content and all content!">
   <link rel="canonical" href="https://copyright.nins.cc/">
-  <title translate="no">nins/xmas</title>
+  <title translate="no">nins/uris</title>
     <style>
       body {
         overflow: hidden;
@@ -194,10 +194,9 @@
   
     <!-- NINS ================================================== -->
     <script src="https://copyright.nins.cc/children/0001/nins-update.js"></script>
-    <script src="https://copyright.nins.cc/children/0001/nins-world.js"></script>
+    <!--script src="https://copyright.nins.cc/children/0001/nins-world.js"></script!-->
     <!--script src="https://copyright.nins.cc/children/0001/nins-ads.js"></script!-->
     <script src="https://copyright.nins.cc/children/0001/nins-abc.js"></script>
-    <!--div id="google_translate_element" style="display:none;"></div-->
   
   
     
@@ -620,6 +619,45 @@ document.getElementById("InputInfo").addEventListener("focus", () => {
 }, { once: true }); // ✅ 只執行一次
 </script>
 <!-- ================================================== -->
+
+<script>
+  function UserReady() {
+    window.addEventListener('load', () => {  
+      
+      // 建立 style 標籤
+      const style = document.createElement('style');
+      style.textContent = `
+        *, *::before, *::after {
+          text-align: center; /* left / center / right / justify */
+          flex-shrink: 0;      /* 不縮小子元素高度 */
+        }
+        #chatbox > * {
+          flex-shrink: 0;      /* 不縮小子元素高度 */
+        }
+        #chatbox * {
+          text-align: left;   /* 所有子層文字置中 */
+        }
+        dialog * {
+          text-align: left;   /* 所有子層文字置中 */
+        }
+        #DialogTrans * {
+          text-align: center;   /* 所有子層文字置中 */
+        }
+      `;
+      document.head.appendChild(style);
+    });
+  }
+  ///20260216
+  document.getElementById("InputRoom").style.display = "block";
+  document.addEventListener('click', function handler(event) {
+    if (event.target.tagName === 'BUTTON') {
+      console.log('START:', event.target);
+      // 這裡放你的邏輯
+      UserReady();
+      // 這裡放你的邏輯
+    }
+  }, { once: true });
+</script>
 
 
 
